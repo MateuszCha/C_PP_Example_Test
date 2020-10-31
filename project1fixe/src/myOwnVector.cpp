@@ -1,4 +1,5 @@
 #include "myOwnVector.hpp"
+#include <stdexcept>
 
 OwnVector::OwnVector(){
     this->array = new int[10];
@@ -11,7 +12,7 @@ OwnVector::OwnVector(int size){
     this->size = size;
 }
 OwnVector::OwnVector(int size, int capacity){
-    this->array = new int[size];
+    this->array = new int[capacity];
     this->capacity = capacity;
     this->size = size;
 }
@@ -25,6 +26,28 @@ int OwnVector::getSize(){
     return 0;
 }
 int OwnVector::getCapacity(){
-    if(array != nullptr) return this->capacity;
+    if(array != nullptr) return capacity;
     return 0;
+}
+void OwnVector::add(int elemnt) {
+    if(array == nullptr) return;
+    if(size<capacity){
+        size++;
+       array[size] = elemnt;
+    }  
+}
+void OwnVector::add(int position, int element){
+    if(array == nullptr) return;
+    if(position < 0) position = 0;
+    if(position > size) position = size;
+    array[position] = element;
+
+}
+int OwnVector::getElemnt(int position){    
+    if(array != nullptr){
+        if(position < 0) position = 0;
+        if(position > size) position = size;
+        return array[position];
+    }
+    throw std::out_of_range("vector was not create");
 }

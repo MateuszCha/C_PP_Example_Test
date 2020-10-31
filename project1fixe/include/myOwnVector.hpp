@@ -10,6 +10,9 @@ class OwnVector{
     OwnVector(OwnVector&&) = delete;
     int getSize();
     int getCapacity();
+    int getElemnt(int position);
+    void add(int elemnet);
+    void add(int position, int elemnt);
 
     private:
     int *array;

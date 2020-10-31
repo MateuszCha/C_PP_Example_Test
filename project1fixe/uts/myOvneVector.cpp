@@ -52,3 +52,30 @@ TEST_F(OwnVectorTest, ConstrutorOwnVectorWithParametersSizeAndCapacity_createPRo
         delete this->vector;        
     }    
 }
+TEST_F(OwnVectorTest, ownVectorAndAddFewElemntToArray_AddProperlyAndIncrestSize_returnIncremnetedSize)
+{
+    int tab[] = {1,2,3,4,5,6};
+    int size = 5;
+    this->vector = new OwnVector();
+    if(vector == nullptr) return; 
+
+    for(int i = 0 ; i<size;i++){
+        this->vector->add(tab[i]);
+    }
+    EXPECT_EQ(size, vector->getSize());
+    if(this->vector != nullptr){
+        delete this->vector;        
+    }  
+}
+TEST_F(OwnVectorTest, ownVectorAndAddElemntOnPositionToArray_AddProperlyAndIncrestSize_returnIncremnetedSize)
+{
+    int position = 7; 
+    int vlaue = 13; 
+    this->vector = new OwnVector(10);
+    if(vector == nullptr) return; 
+    vector->add(7,13);
+    EXPECT_EQ(vlaue, vector->getElemnt(position));
+    if(this->vector != nullptr){
+        delete this->vector;        
+    }  
+}
