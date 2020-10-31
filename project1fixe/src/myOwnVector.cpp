@@ -10,6 +10,11 @@ OwnVector::OwnVector(int size){
     this->capacity = size;
     this->size = size;
 }
+OwnVector::OwnVector(int size, int capacity){
+    this->array = new int[size];
+    this->capacity = capacity;
+    this->size = size;
+}
 OwnVector::~OwnVector(){
     if(array != nullptr){
         delete[] array;
@@ -17,5 +22,9 @@ OwnVector::~OwnVector(){
 }
 int OwnVector::getSize(){
     if(array != nullptr) return size;
+    return 0;
+}
+int OwnVector::getCapacity(){
+    if(array != nullptr) return this->capacity;
     return 0;
 }
