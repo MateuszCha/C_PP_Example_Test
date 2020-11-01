@@ -73,20 +73,8 @@ TEST_F(OwnVectorTest, ownVectorAndAddElemntOnPositionToArray_AddProperlyAndIncre
     int position = 7; 
     int vlaue = 13; 
     int newValue = 15;
-    this->vector = new OwnVector(position,vlaue);
-    /*if(vector == nullptr) return; 
-      for(int i = 0 ; i < vector->getCapacity(); i++){
-        std::cout<<vector->getElemnt(i)<< " ";
-    }
-
-    std::cout<<vector->getCapacity()<<" "<< vector->getSize() <<std::endl;
-     */
-    vector->add(position,newValue);
-   /*   for(int i = 0 ; i < vector->getCapacity(); i++){
-        std::cout<<vector->getElemnt(i)<< " ";
-    }
-    std::cout<<vector->getCapacity()<<" "<< vector->getSize() <<std::endl;
-    */
+    this->vector = new OwnVector(position,vlaue);   
+    vector->add(position,newValue);   
     EXPECT_EQ(newValue, vector->getElemnt(position));
     if(this->vector != nullptr){
         delete this->vector;        
@@ -107,4 +95,37 @@ TEST_F(OwnVectorTest, ownVectorReplaceElemntOnPositionInArray_ReplaceElemntAndge
         delete this->vector;        
     }  
 }
+TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndreturnThem_returnRemovedElement)
+{
+    int Fillvalue = 7; 
+    int replaceElemnt = 11;
+    int capacity = 13; 
+    int position = 10;
+    int size;
+    this->vector = new OwnVector(capacity,Fillvalue);
+    if(vector == nullptr) return; 
+    size = vector->getSize();
+    vector->replace(position,replaceElemnt);
+    EXPECT_EQ(replaceElemnt, vector->getElemnt(position));
+    EXPECT_EQ(replaceElemnt, vector->remove(position));    
+    EXPECT_EQ(size-1, vector->getSize());
+    EXPECT_NE(replaceElemnt, vector->getElemnt(position - 1));
+    EXPECT_NE(replaceElemnt, vector->getElemnt(position + 1));
+    if(this->vector != nullptr){
+        delete this->vector;        
+    }  
+}
+
+  /*if(vector == nullptr) return; 
+      for(int i = 0 ; i < capacity; i++){
+        std::cout<<array[i]<< " ";
+    }
+
+    std::cout<<vector->getCapacity()<<" "<< vector->getSize() <<std::endl;
+     */
+   /*   for(int i = 0 ; i < vector->getCapacity(); i++){
+        std::cout<<vector->getElemnt(i)<< " ";
+    }
+    std::cout<<vector->getCapacity()<<" "<< vector->getSize() <<std::endl;
+    */
 

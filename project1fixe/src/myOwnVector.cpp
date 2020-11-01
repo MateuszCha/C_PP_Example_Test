@@ -85,8 +85,25 @@ void OwnVector::allocateNewMemeory(){
 int OwnVector::replace(int position, int element){
     int tempValue;
     if(array == nullptr) return 0;
-    if(position < 0 || position >= size) throw std::out_of_range("vector was not create");
+    if(position < 0 || position >= size) throw std::out_of_range("out of index");
     tempValue = array[position];
     array[position] = element;
     return tempValue;
 }
+int OwnVector::remove(int position){
+    
+    if(array == nullptr)throw std::invalid_argument("vector was not create");
+    if(position < 0 || position >= size) throw std::out_of_range("out of range/index");
+    int value = array[position];
+    for(int i = position + 1; i < size; i++){
+        array[i - 1] = array[i];
+    }
+    size--;   
+    return value;
+}
+/*
+ for(int i = 0 ; i < capacity; i++){
+        std::cout<<array[i]<< " ";    
+    }
+    std::cout<<size << " value :: " << value << " " <<std::endl;
+    */

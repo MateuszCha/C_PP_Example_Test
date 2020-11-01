@@ -12,8 +12,10 @@ class OwnVector{
     int getCapacity();
     int getElemnt(int position);
     int replace(int position, int element);
+    int remove(int position);
     void add(int elemnet);
     void add(int position, int elemnt);
+
 
     private:
     int *array;
