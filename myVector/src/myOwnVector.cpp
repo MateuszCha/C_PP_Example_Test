@@ -1,6 +1,7 @@
 #include "myOwnVector.hpp"
 #include <stdexcept>
 #include <iostream>
+#include <string>
 
 OwnVector::OwnVector(){
     this->array = new int[10];
@@ -110,9 +111,10 @@ void OwnVector::resize(){
 
     int newCapacity = capacity/2 + 5;
     std::cout<<newCapacity<<std::endl;
-    for(int i = 0 ; i < capacity; i++){
-        std::cout<<array[i]<< " ";    
-    }
+
+    std::cout<<this->toString()<<std::endl;
+  
+
     std::cout<<size << " value :: " << " " <<std::endl;
     int *temp;
     for(int i = capacity - 1 ; i >= newCapacity; i--){
@@ -120,17 +122,21 @@ void OwnVector::resize(){
         std::cout<<i<< (array + i)<<"  " << (array + i - 1)<<std::endl;       
        
         std::cout<<*(array + i)<<"  " << *(array + i - 1) <<" " << temp<<std::endl;
-    }
-    int a = 7;
-    int *b = &a;
-    int *c = b;
-    std::cout<<b << " *b :"<<*b<< " &b : " << &b << std::endl;
-    std::cout<<c << " *c :"<<*b<< " &c : " << &c << std::endl;
-    delete c;
-    std::cout<<b << " *b :"<<*b<< " &b : " << &b << std::endl;
+    }  
     //delete temp;
     if(newCapacity - size > 0) capacity = newCapacity;    
 
+}
+std::string OwnVector::toString(){
+    std::string result = "";
+    if(this->array == nullptr){
+        result = "NULL";
+        return result;
+    }
+    for(int i = 0; i < size; i++){
+        result += array[i] + " ";
+    }
+    return result;
 }
 /*
  for(int i = 0 ; i < capacity; i++){

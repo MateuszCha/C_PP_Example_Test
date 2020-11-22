@@ -97,7 +97,7 @@ TEST_F(OwnVectorTest, ownVectorReplaceElemntOnPositionInArray_ReplaceElemntAndge
 }
 TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndreturnThem_returnRemovedElement)
 {
-    /*
+
     int Fillvalue = 7; 
     int replaceElemnt = 11;
     int capacity = 12; 
@@ -122,7 +122,6 @@ TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndretu
     if(this->vector != nullptr){
         delete this->vector;        
     }  
-    */
 }
 
   /*if(vector == nullptr) return; 

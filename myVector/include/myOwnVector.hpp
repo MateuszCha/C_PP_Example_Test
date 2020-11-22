@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 class OwnVector{
     public:
     OwnVector();
@@ -15,6 +17,7 @@ class OwnVector{
     int remove(int position);
     void add(int elemnet);
     void add(int position, int elemnt);
+    std::string toString();
 
 
     private:
