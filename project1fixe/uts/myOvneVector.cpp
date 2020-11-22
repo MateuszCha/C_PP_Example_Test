@@ -97,10 +97,11 @@ TEST_F(OwnVectorTest, ownVectorReplaceElemntOnPositionInArray_ReplaceElemntAndge
 }
 TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndreturnThem_returnRemovedElement)
 {
+    /*
     int Fillvalue = 7; 
     int replaceElemnt = 11;
-    int capacity = 13; 
-    int position = 10;
+    int capacity = 12; 
+    int position = 0;
     int size;
     this->vector = new OwnVector(capacity,Fillvalue);
     if(vector == nullptr) return; 
@@ -110,10 +111,18 @@ TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndretu
     EXPECT_EQ(replaceElemnt, vector->remove(position));    
     EXPECT_EQ(size-1, vector->getSize());
     EXPECT_NE(replaceElemnt, vector->getElemnt(position - 1));
-    EXPECT_NE(replaceElemnt, vector->getElemnt(position + 1));
+    EXPECT_NE(replaceElemnt, vector->getElemnt(position + 1));    
+    for(int i = 0 ; i < 6; i++){
+        vector->remove(0);
+    }
+    for(int i = 0 ; i < vector->getCapacity(); i++){
+        std::cout<<vector->getElemnt(i)<< " ";
+    }
+    std::cout<<vector->getCapacity()<<" "<< vector->getSize() <<std::endl;
     if(this->vector != nullptr){
         delete this->vector;        
     }  
+    */
 }
 
   /*if(vector == nullptr) return; 

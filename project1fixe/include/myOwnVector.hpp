@@ -22,4 +22,5 @@ class OwnVector{
     int size;
     int capacity;
     void allocateNewMemeory();
+    void resize();
 };

@@ -35,7 +35,7 @@ int OwnVector::getCapacity(){
 }
 void OwnVector::add(int element) {
     if(array == nullptr) return;
-    if(size<capacity){
+    if(size < capacity){
        array[size] = element;
     }else{        
         this->allocateNewMemeory();
@@ -95,11 +95,42 @@ int OwnVector::remove(int position){
     if(array == nullptr)throw std::invalid_argument("vector was not create");
     if(position < 0 || position >= size) throw std::out_of_range("out of range/index");
     int value = array[position];
+   
     for(int i = position + 1; i < size; i++){
         array[i - 1] = array[i];
     }
-    size--;   
+    size--;
+    if((size * 2) < capacity){ 
+        std::cout<<size <<"  "<<capacity << " xxxx  " << std::endl;
+        resize();
+    }
     return value;
+}
+void OwnVector::resize(){
+
+    int newCapacity = capacity/2 + 5;
+    std::cout<<newCapacity<<std::endl;
+    for(int i = 0 ; i < capacity; i++){
+        std::cout<<array[i]<< " ";    
+    }
+    std::cout<<size << " value :: " << " " <<std::endl;
+    int *temp;
+    for(int i = capacity - 1 ; i >= newCapacity; i--){
+        temp = (array + i);
+        std::cout<<i<< (array + i)<<"  " << (array + i - 1)<<std::endl;       
+       
+        std::cout<<*(array + i)<<"  " << *(array + i - 1) <<" " << temp<<std::endl;
+    }
+    int a = 7;
+    int *b = &a;
+    int *c = b;
+    std::cout<<b << " *b :"<<*b<< " &b : " << &b << std::endl;
+    std::cout<<c << " *c :"<<*b<< " &c : " << &c << std::endl;
+    delete c;
+    std::cout<<b << " *b :"<<*b<< " &b : " << &b << std::endl;
+    //delete temp;
+    if(newCapacity - size > 0) capacity = newCapacity;    
+
 }
 /*
  for(int i = 0 ; i < capacity; i++){
