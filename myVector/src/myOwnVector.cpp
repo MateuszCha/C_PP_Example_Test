@@ -2,15 +2,17 @@
 #include <stdexcept>
 #include <iostream>
 
-OwnVector::OwnVector(){
+OwnVector::OwnVector() {
     this->array = new int[10];
     this->capacity = 10;
     this->size = 0;
+    this->iter = new Iterator(array,&size);
 }
 OwnVector::OwnVector(int capacity){
     this->array = new int[capacity];
     this->capacity = capacity;
     this->size = 0;
+    this->iter = new Iterator(array,&size);
 }
 OwnVector::OwnVector(int capacity, int elemnt){ // do porpryw nie size ilosc 
     this->array = new int[capacity];
@@ -19,12 +21,18 @@ OwnVector::OwnVector(int capacity, int elemnt){ // do porpryw nie size ilosc
     for(int i = 0; i < capacity; i++){
         array[i] = elemnt;
     }
+    this->iter = new Iterator(array,&size);
 }
+
 OwnVector::~OwnVector(){
     if(array != nullptr){
         delete[] array;
     }
+    if(iter != nullptr){
+        delete iter;
+    }
 }
+
 int OwnVector::getSize(){
     if(array != nullptr) return size;
     return 0;
@@ -77,6 +85,7 @@ void OwnVector::allocateNewMemeory(){
         delete[] array; 
         array = tabTemp2;
         tabTemp2 = nullptr;
+    /// iterator zabaw
     }catch(...){   
         std::cout<<"Tush B cyka blyat!!!!"<<std::endl; 
 
@@ -103,9 +112,10 @@ int OwnVector::remove(int position){
     if((size * 2) < capacity){ 
        // std::cout<<size <<"  "<<capacity << " xxxx  " << std::endl;
         resize();
-    }
+    }    
     return value;
 }
+
 void OwnVector::resize(){
 
     int newCapacity = capacity/2 + 5;
@@ -120,7 +130,9 @@ void OwnVector::resize(){
     delete[] array;
     array = temp;
     capacity = newCapacity;  
+    /// iterator zabaw
 }
+
 std::string OwnVector::toString(){
     std::string result = "";
     if(this->array == nullptr){
@@ -131,10 +143,26 @@ std::string OwnVector::toString(){
         result += array[i] + " ";
     }
     return result;
+}/*
+OwnVector::Iterator* OwnVector::iterator(){
+    return this->iter;
 }
-/*
- for(int i = 0 ; i < capacity; i++){
-        std::cout<<array[i]<< " ";    
-    }
-    std::cout<<size << " value :: " << value << " " <<std::endl;
-    */
+*/
+OwnVector::Iterator::Iterator(int *wsk, int *size) {   
+    this->wsk = wsk;
+    this->firstElement = wsk;
+    this->size = size;
+}
+void OwnVector::Iterator::operator=(int *wsk){
+    *(this->wsk) = *wsk;
+}
+int* OwnVector::Iterator::begin(){
+    return this->firstElement;  
+}
+int* OwnVector::Iterator::end(){
+    return (this->firstElement + *size);
+}
+int* OwnVector::Iterator::next(){
+    if(wsk != (this->firstElement + *size)) wsk++;
+    return wsk; 
+}

@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "myOwnVector.hpp"
+#include <vector>
 
 class OwnVectorTest : public ::testing::Test
 {
@@ -16,7 +17,8 @@ class OwnVectorTest : public ::testing::Test
         */
     };
 
-
+    static void SetUpTestSuite() {};
+    static void TearDownTestSuite() {}; 
     void SetUp() override {};
     void TearDown() override {};
     protected: 
@@ -104,11 +106,13 @@ TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndretu
     int position = 0;
     int size;
     this->vector = new OwnVector(capacity,Fillvalue);
+
     if(vector == nullptr) return; 
     size = vector->getSize();
-    vector->replace(position,replaceElemnt);
+    vector->replace(position,replaceElemnt);    
     EXPECT_EQ(replaceElemnt, vector->getElemnt(position));
-    EXPECT_EQ(replaceElemnt, vector->remove(position));    
+    EXPECT_EQ(replaceElemnt, vector->remove(position));
+        
     EXPECT_EQ(size-1, vector->getSize());
     EXPECT_NE(replaceElemnt, vector->getElemnt(position - 1));
     EXPECT_NE(replaceElemnt, vector->getElemnt(position + 1));    
@@ -124,6 +128,21 @@ TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndretu
     if(this->vector != nullptr){
         delete this->vector;        
     }  
+}
+TEST_F(OwnVectorTest, OwnVectorGetIterratorInnerClass_GetIterator_returnFirstAndLastPointer){
+
+    int Fillvalue = 7; 
+    int capacity = 12; 
+    this->vector = new OwnVector(capacity,Fillvalue);
+    OwnVector::Iterator *iterator;
+    iterator = vector->iterator();
+    EXPECT_EQ(vector->getWskOnlyToTest(0),iterator->begin());
+    EXPECT_EQ(vector->getWskOnlyToTest(12),iterator->end());    
+    iterator->next();
+    iterator->next();
+    EXPECT_EQ(vector->getWskOnlyToTest(3),iterator->next());
+
+
 }
 
   /*if(vector == nullptr) return; 

@@ -18,7 +18,30 @@ class OwnVector{
     void add(int elemnet);
     void add(int position, int elemnt);
     std::string toString();
+    int* getWskOnlyToTest(int index){
+        if(array == nullptr || index > size )return nullptr;
+        return &array[index];
+    };
+    
 
+    class Iterator {
+        public:
+        void operator = (int *wsk);
+        Iterator(int *wsk, int * size);
+
+        int* next();
+        int* begin();
+        int* end();
+
+        private:
+        int *firstElement;
+        int *wsk;
+        int *size;
+    };
+
+    Iterator* iterator(){
+        return this->iter;
+    };
 
     private:
     int *array;
@@ -26,4 +49,5 @@ class OwnVector{
     int capacity;
     void allocateNewMemeory();
     void resize();
+    Iterator *iter;
 };
