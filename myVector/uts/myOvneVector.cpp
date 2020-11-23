@@ -115,9 +115,11 @@ TEST_F(OwnVectorTest, ownVectorRemoveElemntOnPositionInArray_RemoveElemntAndretu
     for(int i = 0 ; i < 6; i++){
         vector->remove(0);
     }
+    std::cout<<std::endl;
     for(int i = 0 ; i < vector->getCapacity(); i++){
         std::cout<<vector->getElemnt(i)<< " ";
     }
+    std::cout<<std::endl;
     std::cout<<vector->getCapacity()<<" "<< vector->getSize() <<std::endl;
     if(this->vector != nullptr){
         delete this->vector;        

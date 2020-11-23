@@ -1,7 +1,6 @@
 #include "myOwnVector.hpp"
 #include <stdexcept>
 #include <iostream>
-#include <string>
 
 OwnVector::OwnVector(){
     this->array = new int[10];
@@ -93,7 +92,7 @@ int OwnVector::replace(int position, int element){
 }
 int OwnVector::remove(int position){
     
-    if(array == nullptr)throw std::invalid_argument("vector was not create");
+    if(array == nullptr) throw std::invalid_argument("vector was not create");
     if(position < 0 || position >= size) throw std::out_of_range("out of range/index");
     int value = array[position];
    
@@ -102,7 +101,7 @@ int OwnVector::remove(int position){
     }
     size--;
     if((size * 2) < capacity){ 
-        std::cout<<size <<"  "<<capacity << " xxxx  " << std::endl;
+       // std::cout<<size <<"  "<<capacity << " xxxx  " << std::endl;
         resize();
     }
     return value;
@@ -110,22 +109,17 @@ int OwnVector::remove(int position){
 void OwnVector::resize(){
 
     int newCapacity = capacity/2 + 5;
-    std::cout<<newCapacity<<std::endl;
+    std::cout<<"size of capacityOld: " << capacity<<std::endl;
+    std::cout<<"size of capacityNEw: " << newCapacity<<std::endl;
+    std::cout<<this->toString()<<std::endl;  
 
-    std::cout<<this->toString()<<std::endl;
-  
-
-    std::cout<<size << " value :: " << " " <<std::endl;
-    int *temp;
-    for(int i = capacity - 1 ; i >= newCapacity; i--){
-        temp = (array + i);
-        std::cout<<i<< (array + i)<<"  " << (array + i - 1)<<std::endl;       
-       
-        std::cout<<*(array + i)<<"  " << *(array + i - 1) <<" " << temp<<std::endl;
-    }  
-    //delete temp;
-    if(newCapacity - size > 0) capacity = newCapacity;    
-
+    int *temp = new int[newCapacity];
+    for(int i = 0; i <size; i++){
+        temp[i] = array[i];    
+    }
+    delete[] array;
+    array = temp;
+    capacity = newCapacity;  
 }
 std::string OwnVector::toString(){
     std::string result = "";
