@@ -141,8 +141,29 @@ TEST_F(OwnVectorTest, OwnVectorGetIterratorInnerClass_GetIterator_returnFirstAnd
     iterator->next();
     iterator->next();
     EXPECT_EQ(vector->getWskOnlyToTest(3),iterator->next());
+    EXPECT_EQ(vector->getWskOnlyToTest(2),iterator->previous());    
+}
+TEST_F(OwnVectorTest, OwnVectorGetIterratorInnerClass_GetIteratorWhenRelocateMemory_returnFirstAndLastPointer){
 
+    int Fillvalue = 7; 
+    int capacity = 12; 
+    this->vector = new OwnVector(capacity,Fillvalue); 
+    OwnVector::Iterator *iterator;
+    iterator = vector->iterator();
+    EXPECT_EQ(vector->getWskOnlyToTest(1),iterator->begin());
+    EXPECT_EQ(vector->getWskOnlyToTest(11),iterator->end());  
+    EXPECT_EQ(vector->getWskOnlyToTest(2),iterator->next());
+    EXPECT_EQ(vector->getWskOnlyToTest(1),iterator->previous()); 
 
+    vector->add(10);    
+    iterator = vector->iterator();
+
+    EXPECT_EQ(vector->getWskOnlyToTest(0),iterator->begin());
+    EXPECT_EQ(vector->getWskOnlyToTest(12),iterator->end());    
+    iterator->next();
+    iterator->next();
+    EXPECT_EQ(vector->getWskOnlyToTest(3),iterator->next());
+    EXPECT_EQ(vector->getWskOnlyToTest(2),iterator->previous());    
 }
 
   /*if(vector == nullptr) return; 

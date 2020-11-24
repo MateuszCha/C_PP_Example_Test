@@ -119,9 +119,9 @@ int OwnVector::remove(int position){
 void OwnVector::resize(){
 
     int newCapacity = capacity/2 + 5;
-    std::cout<<"size of capacityOld: " << capacity<<std::endl;
-    std::cout<<"size of capacityNEw: " << newCapacity<<std::endl;
-    std::cout<<this->toString()<<std::endl;  
+   // std::cout<<"size of capacityOld: " << capacity<<std::endl;
+   // std::cout<<"size of capacityNEw: " << newCapacity<<std::endl;
+    //std::cout<<this->toString()<<std::endl;  
 
     int *temp = new int[newCapacity];
     for(int i = 0; i <size; i++){
@@ -129,7 +129,11 @@ void OwnVector::resize(){
     }
     delete[] array;
     array = temp;
-    capacity = newCapacity;  
+    capacity = newCapacity;
+    int *wsk = iter->getWsk();
+    delete iter;
+    iter = new Iterator(array,&size,wsk);
+    //iter->changeWsk();  
     /// iterator zabaw
 }
 
@@ -153,9 +157,11 @@ OwnVector::Iterator::Iterator(int *wsk, int *size) {
     this->firstElement = wsk;
     this->size = size;
 }
+/*
 void OwnVector::Iterator::operator=(int *wsk){
     *(this->wsk) = *wsk;
 }
+*/
 int* OwnVector::Iterator::begin(){
     return this->firstElement;  
 }
@@ -164,5 +170,9 @@ int* OwnVector::Iterator::end(){
 }
 int* OwnVector::Iterator::next(){
     if(wsk != (this->firstElement + *size)) wsk++;
+    return wsk; 
+}
+int* OwnVector::Iterator::previous(){
+    if(wsk != (this->firstElement)) wsk--;
     return wsk; 
 }
