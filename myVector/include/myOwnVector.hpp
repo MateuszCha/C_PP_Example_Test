@@ -1,6 +1,37 @@
 #pragma once
 
+#include <string>
+
 class OwnVector{
+    public:
+    class Iterator {
+        public:
+       // void operator = (int *wsk);
+        Iterator(int *wsk, int * size);
+        Iterator(int *wsk, int * size, int *wsk1){
+            this->wsk = wsk1;
+            this->firstElement = wsk;
+            this->size = size;
+        };
+
+        int* getWsk(){
+            return this->wsk;
+        };
+        int* next();
+        int* begin();
+        int* end();
+        int* previous();
+       /* protected: 
+        void changeWsk(){
+            this->wsk = array;
+        }; 
+        */
+
+        private:
+        int *firstElement;
+        int *wsk;
+        int *size;
+    };
     public:
     OwnVector();
     OwnVector(int capacity);
@@ -15,7 +46,19 @@ class OwnVector{
     int remove(int position);
     void add(int elemnet);
     void add(int position, int elemnt);
+    std::string toString();
 
+//////////////// OLNY TEST METHOD
+    int* getWskOnlyToTest(int index){        
+        if(array == nullptr || index > size )return nullptr;
+        return &array[index];
+    };    
+//////////////////
+    
+
+    Iterator* iterator(){
+        return this->iter;
+    };
 
     private:
     int *array;
@@ -23,4 +66,5 @@ class OwnVector{
     int capacity;
     void allocateNewMemeory();
     void resize();
+    Iterator *iter;
 };
