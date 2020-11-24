@@ -6,9 +6,11 @@ int main() {
 	//Quadratic Equation//
 	//MathExample math;
 	//std::cout << math.quadraticFunction() << std::endl; 
+
 	//Convert Minutes into Seconds//
+	//Convert Hours into Seconds//
 	TimeExample time;
-	std::cout << time.ConvertMinutesToSeconds(3) << std::endl;
+	std::cout << time.ConvertMinutesToSeconds(time.ConvertHouersToMinutes(4)) << std::endl;
 	std::cout << "cos" << std::endl;
 	return 0;
 }
