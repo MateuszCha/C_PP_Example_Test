@@ -34,3 +34,21 @@ void MathExample::getArguments() {
 	std::cout << "podaj C :" << std::endl;
 	std::cin >> c;
 }
+int MathExample::ownRoundMethod(double value, unsigned short index) {
+	unsigned int multplicator = 1;
+	long long result = static_cast<int> (value);
+	long long temp = 0;
+	{
+		int indexTemp = index;
+		while (indexTemp > 0) {
+			indexTemp /= 10;
+			multplicator *= 10;
+		}
+	}
+	result *= multplicator;
+	temp += static_cast<long> (value * multplicator);
+	temp -= result;
+	if (temp > index) result += multplicator;
+	result /= multplicator;
+	return static_cast<int>(result);
+}

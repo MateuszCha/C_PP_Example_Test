@@ -1,4 +1,3 @@
 ﻿  Main.cpp
-  timeExample.cpp
-  Generating Code...
+C:\Users\Media\Desktop\cppTest\C_PP_Example_Test\ManySmallTasks\SmallTask\SmallTask\Main.cpp(48,20): warning C4018: '<': signed/unsigned mismatch
   SmallTask.vcxproj -> C:\Users\Media\Desktop\cppTest\C_PP_Example_Test\ManySmallTasks\SmallTask\Debug\SmallTask.exe
